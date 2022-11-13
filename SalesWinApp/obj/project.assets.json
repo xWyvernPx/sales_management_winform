@@ -1346,6 +1346,13 @@
       "DataAccess/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Microsoft.Data.SqlClient": "5.0.1",
+          "Microsoft.EntityFrameworkCore": "7.0.0",
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.0",
+          "Microsoft.Extensions.Configuration": "7.0.0",
+          "Microsoft.Extensions.Configuration.Json": "7.0.0"
+        },
         "compile": {
           "bin/placeholder/DataAccess.dll": {}
         },
@@ -4094,19 +4101,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\phong\\.nuget\\packages\\": {}
+    "C:\\Users\\Thuong\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\root\\Project\\prn_asm\\SaleManagement\\SalesWinApp\\SalesWinApp.csproj",
+      "projectUniqueName": "D:\\PRN211_1311\\sales_management_winform\\SalesWinApp\\SalesWinApp.csproj",
       "projectName": "SalesWinApp",
-      "projectPath": "C:\\root\\Project\\prn_asm\\SaleManagement\\SalesWinApp\\SalesWinApp.csproj",
-      "packagesPath": "C:\\Users\\phong\\.nuget\\packages\\",
-      "outputPath": "C:\\root\\Project\\prn_asm\\SaleManagement\\SalesWinApp\\obj\\",
+      "projectPath": "D:\\PRN211_1311\\sales_management_winform\\SalesWinApp\\SalesWinApp.csproj",
+      "packagesPath": "C:\\Users\\Thuong\\.nuget\\packages\\",
+      "outputPath": "D:\\PRN211_1311\\sales_management_winform\\SalesWinApp\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\phong\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Thuong\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4120,11 +4132,11 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "C:\\root\\Project\\prn_asm\\SaleManagement\\BusinessObject\\BusinessObject.csproj": {
-              "projectPath": "C:\\root\\Project\\prn_asm\\SaleManagement\\BusinessObject\\BusinessObject.csproj"
+            "D:\\PRN211_1311\\sales_management_winform\\BusinessObject\\BusinessObject.csproj": {
+              "projectPath": "D:\\PRN211_1311\\sales_management_winform\\BusinessObject\\BusinessObject.csproj"
             },
-            "C:\\root\\Project\\prn_asm\\SaleManagement\\DataAccess\\DataAccess.csproj": {
-              "projectPath": "C:\\root\\Project\\prn_asm\\SaleManagement\\DataAccess\\DataAccess.csproj"
+            "D:\\PRN211_1311\\sales_management_winform\\DataAccess\\DataAccess.csproj": {
+              "projectPath": "D:\\PRN211_1311\\sales_management_winform\\DataAccess\\DataAccess.csproj"
             }
           }
         }

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
-namespace BusinessObject.Models;
+namespace DataAccess.Entity;
 
 public partial class Assignment02Context : DbContext
 {
@@ -24,9 +25,22 @@ public partial class Assignment02Context : DbContext
     public virtual DbSet<Product> Products { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=localhost,1433;Initial Catalog=assignment02;User ID=sa;Password=123456;TrustServerCertificate=true");
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseSqlServer(GetConnectionString());
+        }
+    }
 
+    private string GetConnectionString()
+    {
+        IConfiguration config = new ConfigurationBuilder()
+         .SetBasePath(Directory.GetCurrentDirectory())
+        .AddJsonFile("appsettings.json", true, true)
+        .Build();
+        var strConn = config["ConnectionStrings:SalesDB"];
+        return strConn;
+    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Member>(entity =>
@@ -58,6 +72,8 @@ public partial class Assignment02Context : DbContext
 
             entity.ToTable("Order");
 
+            entity.HasIndex(e => e.MemberId, "IX_Order_MemberId");
+
             entity.Property(e => e.Freight).HasColumnType("money");
             entity.Property(e => e.OrderDate).HasColumnType("datetime");
             entity.Property(e => e.RequiredDate).HasColumnType("datetime");
@@ -75,7 +91,7 @@ public partial class Assignment02Context : DbContext
 
             entity.ToTable("OrderDetail");
 
-            entity.Property(e => e.OrderId).ValueGeneratedOnAdd();
+            entity.HasIndex(e => e.ProductId, "IX_OrderDetail_ProductId");
 
             entity.HasOne(d => d.Order).WithMany(p => p.OrderDetails)
                 .HasForeignKey(d => d.OrderId)
