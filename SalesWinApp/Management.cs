@@ -1,4 +1,4 @@
-﻿using BusinessObject.Models;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,14 +26,14 @@ namespace SalesWinApp
             //productForm.MdiParent = this;
 
             //productForm.Show();
-           var context = new Assignment02Context();
+           //var context = new Assignment02Context();
 
-            var products = context.Products;
-            products.ToList().ForEach(ele =>
-            {
-                listView1.Items.Add(ele.ProductName);
+           // var products = context.Products;
+            //products.ToList().ForEach(ele =>
+           // {
+            //    listView1.Items.Add(ele.ProductName);
 
-            });
+           // });
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
