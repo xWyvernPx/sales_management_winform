@@ -76,3 +76,5 @@ C:\root\Project\prn_asm\SaleManagement\SalesWinApp\bin\Debug\net6.0-windows\Data
 C:\root\Project\prn_asm\SaleManagement\SalesWinApp\bin\Debug\net6.0-windows\BusinessObject.pdb
 C:\root\Project\prn_asm\SaleManagement\SalesWinApp\bin\Debug\net6.0-windows\DataAccess.pdb
 C:\root\Project\prn_asm\SaleManagement\SalesWinApp\obj\Debug\net6.0-windows\SalesWinApp.csproj.CopyComplete
+C:\root\Project\prn_asm\SaleManagement\SalesWinApp\obj\Debug\net6.0-windows\SalesWinApp.FrmMember.resources
+C:\root\Project\prn_asm\SaleManagement\SalesWinApp\obj\Debug\net6.0-windows\SalesWinApp.FrmOrder.resources
