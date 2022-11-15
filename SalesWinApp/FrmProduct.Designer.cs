@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbProdId = new System.Windows.Forms.Label();
             this.txtProdId = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtProdName = new System.Windows.Forms.TextBox();
@@ -41,22 +41,22 @@
             this.label6 = new System.Windows.Forms.Label();
             this.numUnitStock = new System.Windows.Forms.NumericUpDown();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnProdSave = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.btnProdSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numWeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUnitPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUnitStock)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // lbProdId
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(40, 51);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Product Id";
+            this.lbProdId.AutoSize = true;
+            this.lbProdId.Location = new System.Drawing.Point(40, 51);
+            this.lbProdId.Name = "lbProdId";
+            this.lbProdId.Size = new System.Drawing.Size(62, 15);
+            this.lbProdId.TabIndex = 0;
+            this.lbProdId.Text = "Product Id";
             // 
             // txtProdId
             // 
@@ -157,15 +157,6 @@
             this.panel1.Size = new System.Drawing.Size(389, 66);
             this.panel1.TabIndex = 4;
             // 
-            // btnProdSave
-            // 
-            this.btnProdSave.Location = new System.Drawing.Point(87, 16);
-            this.btnProdSave.Name = "btnProdSave";
-            this.btnProdSave.Size = new System.Drawing.Size(77, 35);
-            this.btnProdSave.TabIndex = 0;
-            this.btnProdSave.Text = "Save";
-            this.btnProdSave.UseVisualStyleBackColor = true;
-            // 
             // btnExit
             // 
             this.btnExit.Location = new System.Drawing.Point(232, 16);
@@ -174,6 +165,17 @@
             this.btnExit.TabIndex = 0;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnProdSave
+            // 
+            this.btnProdSave.Location = new System.Drawing.Point(87, 16);
+            this.btnProdSave.Name = "btnProdSave";
+            this.btnProdSave.Size = new System.Drawing.Size(77, 35);
+            this.btnProdSave.TabIndex = 0;
+            this.btnProdSave.Text = "Save";
+            this.btnProdSave.UseVisualStyleBackColor = true;
+            this.btnProdSave.Click += new System.EventHandler(this.btnProdSave_Click);
             // 
             // FrmProduct
             // 
@@ -192,9 +194,10 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtProdId);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lbProdId);
             this.Name = "FrmProduct";
             this.Text = "Product Manament";
+            this.Load += new System.EventHandler(this.FrmProduct_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numWeight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUnitPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUnitStock)).EndInit();
@@ -206,7 +209,7 @@
 
         #endregion
 
-        private Label label1;
+        private Label lbProdId;
         private TextBox txtProdId;
         private Label label2;
         private TextBox txtProdName;

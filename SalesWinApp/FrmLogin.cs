@@ -1,7 +1,11 @@
+using BusinessObject.Service;
+using Microsoft.Extensions.Configuration;
+
 namespace SalesWinApp
 {
     public partial class FrmLogin : Form
     {
+        IMemberService memberService = new MemberService();
         public FrmLogin()
         {
             InitializeComponent();
@@ -27,33 +31,36 @@ namespace SalesWinApp
             }
             else
             {
-                //TODO : Authen & Authorize
-                //var users = new HrAccountManager();
-                //var user = users.GetAlls().Where(a => a.Email == txtUserName.Text
-                //     && a.Password == txtPass.Text).FirstOrDefault();
-
-                //if (user == null)
-                //{
-                //    MessageBox.Show("Invalid email or password!");
-                //}
-                //else
-                //{
-                //    //TODO  authorize
-                //    if (user.MemberRole == 3)
-                //    {
-
-
-                Management form = new Management();
-                //        form.Tag = user;
-                this.Hide();
-                form.Show();
-                //    }
-                //    else
-                //    {
-                //        MessageBox.Show("You are not allowed to access this function!");
-                //    }
-                //}
-
+                IConfiguration config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", true, true)
+                .Build();
+                var email = config["DefaultAdmin:email"];
+                var password = config["DefaultAdmin:password"];
+                if (txtEmail.Text == email && txtPass.Text == password)
+                {
+                    Management form = new Management();
+                    this.Hide();
+                    form.Show();
+                }
+                else
+                {
+                    var member = memberService.FindAll().Where(mem =>
+                    {
+                        return txtEmail.Text == mem.Email && txtPass.Text == mem.Password;
+                    }).FirstOrDefault();
+                    if (member is not null)
+                    {
+                        Member memForm = new Member();
+                        memForm.Tag = member;
+                        this.Hide();
+                        memForm.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Incorrect email or password");
+                    }
+                }
             }
         }
     }

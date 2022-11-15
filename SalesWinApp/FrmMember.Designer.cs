@@ -32,15 +32,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtMemId = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbMemId = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnProdSave = new System.Windows.Forms.Button();
             this.txtCoName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtCity = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtCountry = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
@@ -79,14 +79,14 @@
             this.txtMemId.Size = new System.Drawing.Size(289, 23);
             this.txtMemId.TabIndex = 11;
             // 
-            // label1
+            // lbMemId
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(47, 50);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 15);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Member Id";
+            this.lbMemId.AutoSize = true;
+            this.lbMemId.Location = new System.Drawing.Point(47, 50);
+            this.lbMemId.Name = "lbMemId";
+            this.lbMemId.Size = new System.Drawing.Size(65, 15);
+            this.lbMemId.TabIndex = 9;
+            this.lbMemId.Text = "Member Id";
             // 
             // panel1
             // 
@@ -105,6 +105,7 @@
             this.btnExit.TabIndex = 0;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // btnProdSave
             // 
@@ -114,6 +115,7 @@
             this.btnProdSave.TabIndex = 0;
             this.btnProdSave.Text = "Save";
             this.btnProdSave.UseVisualStyleBackColor = true;
+            this.btnProdSave.Click += new System.EventHandler(this.btnProdSave_Click);
             // 
             // txtCoName
             // 
@@ -132,13 +134,13 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "City";
             // 
-            // textBox1
+            // txtCity
             // 
-            this.textBox1.Location = new System.Drawing.Point(147, 160);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.PlaceholderText = "City";
-            this.textBox1.Size = new System.Drawing.Size(289, 23);
-            this.textBox1.TabIndex = 10;
+            this.txtCity.Location = new System.Drawing.Point(147, 160);
+            this.txtCity.Name = "txtCity";
+            this.txtCity.PlaceholderText = "City";
+            this.txtCity.Size = new System.Drawing.Size(289, 23);
+            this.txtCity.TabIndex = 10;
             // 
             // label5
             // 
@@ -149,13 +151,13 @@
             this.label5.TabIndex = 7;
             this.label5.Text = "Country";
             // 
-            // textBox2
+            // txtCountry
             // 
-            this.textBox2.Location = new System.Drawing.Point(147, 201);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.PlaceholderText = "Country";
-            this.textBox2.Size = new System.Drawing.Size(289, 23);
-            this.textBox2.TabIndex = 10;
+            this.txtCountry.Location = new System.Drawing.Point(147, 201);
+            this.txtCountry.Name = "txtCountry";
+            this.txtCountry.PlaceholderText = "Country";
+            this.txtCountry.Size = new System.Drawing.Size(289, 23);
+            this.txtCountry.TabIndex = 10;
             // 
             // label6
             // 
@@ -182,9 +184,9 @@
             this.ClientSize = new System.Drawing.Size(472, 407);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtCountry);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtCity);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtCoName);
             this.Controls.Add(this.label4);
@@ -192,9 +194,10 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtMemId);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lbMemId);
             this.Name = "FrmMember";
             this.Text = "FrmMember";
+            this.Load += new System.EventHandler(this.FrmMember_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -212,10 +215,11 @@
         private Button btnProdSave;
         private TextBox txtCoName;
         private Label label4;
-        private TextBox textBox1;
+        private TextBox txtCity;
         private Label label5;
-        private TextBox textBox2;
+        private TextBox txtCountry;
         private Label label6;
         private TextBox txtPassword;
+        private Label lbMemId;
     }
 }

@@ -8,5 +8,8 @@
 # Common node modules locations
 /node_modules
 /wwwroot/node_modules
+BusinessObject/obj
+DataAccess/obj
+SalesWinApp/obj
 
 # End of https://www.toptal.com/developers/gitignore/api/dotnetcore

@@ -9,7 +9,8 @@
       "SalesWinApp/1.0.0": {
         "dependencies": {
           "BusinessObject": "1.0.0",
-          "DataAccess": "1.0.0"
+          "Microsoft.Extensions.Configuration": "7.0.0",
+          "Microsoft.Extensions.Configuration.Json": "7.0.0"
         },
         "runtime": {
           "SalesWinApp.dll": {}
@@ -735,6 +736,7 @@
       "BusinessObject/1.0.0": {
         "dependencies": {
           "AutoMapper": "12.0.0",
+          "DataAccess": "1.0.0",
           "EntityFramework": "6.4.4",
           "Microsoft.EntityFrameworkCore": "7.0.0",
           "Microsoft.EntityFrameworkCore.Abstractions": "7.0.0",
