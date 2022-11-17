@@ -13,6 +13,9 @@
     <Compile Update="FrmProduct.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FrmReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Management.cs">
       <SubType>Form</SubType>
     </Compile>

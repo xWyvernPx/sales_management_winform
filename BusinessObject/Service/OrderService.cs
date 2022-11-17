@@ -12,6 +12,7 @@ namespace BusinessObject.Service
     public class OrderService : IOrderService
     {
         IOrderRepository orderRepository = new OrderRepository();
+        IOrderDetailRepository detailRepository = new OrderDetailRepository();
         IMapper _mapper;
         public OrderService()
         {
@@ -19,6 +20,10 @@ namespace BusinessObject.Service
             {
                 cfg.CreateMap<Order, OrderObject>();
                 cfg.CreateMap<OrderObject, Order>();
+                cfg.CreateMap<OrderDetail, OrderDetailObject>();
+                cfg.CreateMap<OrderDetailObject, OrderDetail>();
+
+
             });
             this._mapper = config.CreateMapper();
         }
@@ -29,6 +34,7 @@ namespace BusinessObject.Service
             {
                 cfg.CreateMap<Order, OrderObject>();
                 cfg.CreateMap<OrderObject, Order>();
+                
             });
             this._mapper = config.CreateMapper();
 
@@ -49,20 +55,30 @@ namespace BusinessObject.Service
 
         public IEnumerable<OrderObject> FindAll()
         {
-             return orderRepository.getAllOrder().Select(e => _mapper.Map<Order, OrderObject>(e));
+            var orders = orderRepository.getAllOrder().Select(e => _mapper.Map<Order, OrderObject>(e));
+            var fullOrders = orders.Select(order =>
+            {
+                var orderDetails = detailRepository.getAllOrderDetail().Where(detail => detail.OrderId == order.OrderId);
+                order.OrderDetails = orderDetails.Select(e => _mapper.Map<OrderDetail, OrderDetailObject>(e));
+                return order;
+            });
+            return fullOrders;
         }
 
         public OrderObject GetById(int id)
         {
-            var order = orderRepository.GetOrder(id);
-            return _mapper.Map<Order,OrderObject>(order);
+            var order = _mapper.Map<Order, OrderObject>(orderRepository.GetOrder(id));
+            var orderDetails = detailRepository.getAllOrderDetail().Where(detail => detail.OrderId == order.OrderId).Select(detail => _mapper.Map<OrderDetail,OrderDetailObject>(detail));
+            order.OrderDetails = orderDetails;
+            return order;
         }
 
         public void Update(OrderObject order)
         {
             if (order is not null)
             {
-                orderRepository.UpdateOrder(_mapper.Map<OrderObject, Order>(order));
+                var orderEntity = (_mapper.Map<OrderObject, Order>(order));
+                orderRepository.UpdateOrder(orderEntity);
             }
         }
     }

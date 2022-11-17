@@ -29,26 +29,28 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtId = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.dtRequiredDate = new System.Windows.Forms.DateTimePicker();
+            this.dtShippedDate = new System.Windows.Forms.DateTimePicker();
+            this.numFreight = new System.Windows.Forms.NumericUpDown();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.orderItem = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnExit = new System.Windows.Forms.Button();
-            this.btnProdSave = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.dtOrderDate = new System.Windows.Forms.DateTimePicker();
+            ((System.ComponentModel.ISupportInitialize)(this.numFreight)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.orderItem.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -62,12 +64,13 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Order Id";
             // 
-            // textBox1
+            // txtId
             // 
-            this.textBox1.Location = new System.Drawing.Point(136, 42);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(361, 23);
-            this.textBox1.TabIndex = 1;
+            this.txtId.Enabled = false;
+            this.txtId.Location = new System.Drawing.Point(136, 42);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(361, 23);
+            this.txtId.TabIndex = 1;
             // 
             // label2
             // 
@@ -86,84 +89,77 @@
             this.label3.Size = new System.Drawing.Size(77, 15);
             this.label3.TabIndex = 0;
             this.label3.Text = "Shipped Date";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(46, 163);
+            this.label4.Location = new System.Drawing.Point(46, 205);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 15);
             this.label4.TabIndex = 0;
             this.label4.Text = "Freight";
             // 
-            // dateTimePicker1
+            // dtRequiredDate
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(136, 81);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(361, 23);
-            this.dateTimePicker1.TabIndex = 2;
+            this.dtRequiredDate.Location = new System.Drawing.Point(136, 81);
+            this.dtRequiredDate.Name = "dtRequiredDate";
+            this.dtRequiredDate.Size = new System.Drawing.Size(361, 23);
+            this.dtRequiredDate.TabIndex = 2;
             // 
-            // dateTimePicker2
+            // dtShippedDate
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(136, 120);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(361, 23);
-            this.dateTimePicker2.TabIndex = 2;
+            this.dtShippedDate.Location = new System.Drawing.Point(136, 120);
+            this.dtShippedDate.Name = "dtShippedDate";
+            this.dtShippedDate.Size = new System.Drawing.Size(361, 23);
+            this.dtShippedDate.TabIndex = 2;
+            this.dtShippedDate.ValueChanged += new System.EventHandler(this.dtShippedDate_ValueChanged);
             // 
-            // numericUpDown1
+            // numFreight
             // 
-            this.numericUpDown1.DecimalPlaces = 1;
-            this.numericUpDown1.Location = new System.Drawing.Point(136, 155);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(139, 23);
-            this.numericUpDown1.TabIndex = 3;
+            this.numFreight.DecimalPlaces = 1;
+            this.numFreight.Location = new System.Drawing.Point(136, 197);
+            this.numFreight.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.numFreight.Name = "numFreight";
+            this.numFreight.Size = new System.Drawing.Size(139, 23);
+            this.numFreight.TabIndex = 3;
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanel1.Controls.Add(this.panel1);
+            this.flowLayoutPanel1.Controls.Add(this.orderItem);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(46, 200);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(46, 238);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(454, 217);
             this.flowLayoutPanel1.TabIndex = 4;
             this.flowLayoutPanel1.WrapContents = false;
             // 
-            // panel1
+            // orderItem
             // 
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.numericUpDown2);
-            this.panel1.Controls.Add(this.comboBox1);
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(447, 32);
-            this.panel1.TabIndex = 0;
+            this.orderItem.Controls.Add(this.button1);
+            this.orderItem.Controls.Add(this.label6);
+            this.orderItem.Controls.Add(this.label5);
+            this.orderItem.Controls.Add(this.numericUpDown2);
+            this.orderItem.Controls.Add(this.comboBox1);
+            this.orderItem.Location = new System.Drawing.Point(3, 3);
+            this.orderItem.Name = "orderItem";
+            this.orderItem.Size = new System.Drawing.Size(447, 32);
+            this.orderItem.TabIndex = 0;
             // 
-            // comboBox1
+            // button1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(64, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 23);
-            this.comboBox1.TabIndex = 0;
-            // 
-            // numericUpDown2
-            // 
-            this.numericUpDown2.Location = new System.Drawing.Point(267, 3);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(120, 23);
-            this.numericUpDown2.TabIndex = 1;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 11);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 15);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Product";
+            this.button1.Location = new System.Drawing.Point(393, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(52, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Add";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label6
             // 
@@ -174,20 +170,35 @@
             this.label6.TabIndex = 2;
             this.label6.Text = "Quantity";
             // 
-            // button1
+            // label5
             // 
-            this.button1.Location = new System.Drawing.Point(393, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(52, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Add";
-            this.button1.UseVisualStyleBackColor = true;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(9, 11);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(49, 15);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Product";
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(267, 3);
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(120, 23);
+            this.numericUpDown2.TabIndex = 1;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(64, 3);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 23);
+            this.comboBox1.TabIndex = 0;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.btnExit);
-            this.panel2.Controls.Add(this.btnProdSave);
-            this.panel2.Location = new System.Drawing.Point(76, 423);
+            this.panel2.Controls.Add(this.btnSave);
+            this.panel2.Location = new System.Drawing.Point(73, 472);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(389, 66);
             this.panel2.TabIndex = 17;
@@ -200,27 +211,50 @@
             this.btnExit.TabIndex = 0;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // btnProdSave
+            // btnSave
             // 
-            this.btnProdSave.Location = new System.Drawing.Point(87, 16);
-            this.btnProdSave.Name = "btnProdSave";
-            this.btnProdSave.Size = new System.Drawing.Size(77, 35);
-            this.btnProdSave.TabIndex = 0;
-            this.btnProdSave.Text = "Save";
-            this.btnProdSave.UseVisualStyleBackColor = true;
+            this.btnSave.Location = new System.Drawing.Point(87, 16);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(77, 35);
+            this.btnSave.TabIndex = 0;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(49, 164);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(64, 15);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Order Date";
+            this.label7.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // dtOrderDate
+            // 
+            this.dtOrderDate.Enabled = false;
+            this.dtOrderDate.Location = new System.Drawing.Point(136, 158);
+            this.dtOrderDate.Name = "dtOrderDate";
+            this.dtOrderDate.Size = new System.Drawing.Size(361, 23);
+            this.dtOrderDate.TabIndex = 2;
+            this.dtOrderDate.ValueChanged += new System.EventHandler(this.dtShippedDate_ValueChanged);
             // 
             // FrmOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(525, 538);
+            this.ClientSize = new System.Drawing.Size(525, 583);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.numFreight);
+            this.Controls.Add(this.dtOrderDate);
+            this.Controls.Add(this.dtShippedDate);
+            this.Controls.Add(this.dtRequiredDate);
+            this.Controls.Add(this.txtId);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -228,10 +262,10 @@
             this.Name = "FrmOrder";
             this.Text = "FrmOrder";
             this.Load += new System.EventHandler(this.FrmOrder_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numFreight)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.orderItem.ResumeLayout(false);
+            this.orderItem.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -242,15 +276,15 @@
         #endregion
 
         private Label label1;
-        private TextBox textBox1;
+        private TextBox txtId;
         private Label label2;
         private Label label3;
         private Label label4;
-        private DateTimePicker dateTimePicker1;
-        private DateTimePicker dateTimePicker2;
-        private NumericUpDown numericUpDown1;
+        private DateTimePicker dtRequiredDate;
+        private DateTimePicker dtShippedDate;
+        private NumericUpDown numFreight;
         private FlowLayoutPanel flowLayoutPanel1;
-        private Panel panel1;
+        private Panel orderItem;
         private Button button1;
         private Label label6;
         private Label label5;
@@ -258,6 +292,8 @@
         private ComboBox comboBox1;
         private Panel panel2;
         private Button btnExit;
-        private Button btnProdSave;
+        private Button btnSave;
+        private Label label7;
+        private DateTimePicker dtOrderDate;
     }
 }

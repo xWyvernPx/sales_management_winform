@@ -5,7 +5,9 @@ namespace SalesWinApp
 {
     public partial class FrmLogin : Form
     {
+       
         IMemberService memberService = new MemberService();
+        
         public FrmLogin()
         {
             InitializeComponent();
@@ -40,6 +42,11 @@ namespace SalesWinApp
                 if (txtEmail.Text == email && txtPass.Text == password)
                 {
                     Management form = new Management();
+                    form.LogoutHandle = () =>
+                    {
+                        form.Close();
+                        this.Show();
+                    };
                     this.Hide();
                     form.Show();
                 }

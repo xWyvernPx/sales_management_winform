@@ -32,6 +32,7 @@
             this.tabProduct = new System.Windows.Forms.TabPage();
             this.dgvProduct = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cboSearchProdOpt = new System.Windows.Forms.ComboBox();
             this.btnSearchProduct = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSearchProd = new System.Windows.Forms.TextBox();
@@ -47,18 +48,23 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtEmailSearch = new System.Windows.Forms.TextBox();
             this.dgvMember = new System.Windows.Forms.DataGridView();
             this.tabOrder = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.btnOrderUpdate = new System.Windows.Forms.Button();
+            this.btnViewOrder = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnReport = new System.Windows.Forms.Button();
             this.dtTo = new System.Windows.Forms.DateTimePicker();
             this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.profileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvOrder.SuspendLayout();
             this.tabProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProduct)).BeginInit();
@@ -72,6 +78,7 @@
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvOrder
@@ -79,7 +86,7 @@
             this.dgvOrder.Controls.Add(this.tabProduct);
             this.dgvOrder.Controls.Add(this.tabMember);
             this.dgvOrder.Controls.Add(this.tabOrder);
-            this.dgvOrder.Location = new System.Drawing.Point(12, 12);
+            this.dgvOrder.Location = new System.Drawing.Point(12, 27);
             this.dgvOrder.Name = "dgvOrder";
             this.dgvOrder.SelectedIndex = 0;
             this.dgvOrder.Size = new System.Drawing.Size(776, 426);
@@ -110,6 +117,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.cboSearchProdOpt);
             this.panel1.Controls.Add(this.btnSearchProduct);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.txtSearchProd);
@@ -118,9 +126,24 @@
             this.panel1.Size = new System.Drawing.Size(730, 45);
             this.panel1.TabIndex = 1;
             // 
+            // cboSearchProdOpt
+            // 
+            this.cboSearchProdOpt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSearchProdOpt.FormattingEnabled = true;
+            this.cboSearchProdOpt.Items.AddRange(new object[] {
+            "Name",
+            "ID",
+            "Unit Price",
+            "Unit In Stock"});
+            this.cboSearchProdOpt.SelectedIndex = 0;
+            this.cboSearchProdOpt.Location = new System.Drawing.Point(447, 18);
+            this.cboSearchProdOpt.Name = "cboSearchProdOpt";
+            this.cboSearchProdOpt.Size = new System.Drawing.Size(135, 23);
+            this.cboSearchProdOpt.TabIndex = 3;
+            // 
             // btnSearchProduct
             // 
-            this.btnSearchProduct.Location = new System.Drawing.Point(471, 15);
+            this.btnSearchProduct.Location = new System.Drawing.Point(588, 15);
             this.btnSearchProduct.Name = "btnSearchProduct";
             this.btnSearchProduct.Size = new System.Drawing.Size(75, 27);
             this.btnSearchProduct.TabIndex = 2;
@@ -143,7 +166,6 @@
             this.txtSearchProd.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtSearchProd.Location = new System.Drawing.Point(153, 15);
             this.txtSearchProd.Name = "txtSearchProd";
-            this.txtSearchProd.PlaceholderText = "Name";
             this.txtSearchProd.Size = new System.Drawing.Size(288, 27);
             this.txtSearchProd.TabIndex = 0;
             // 
@@ -245,7 +267,7 @@
             // 
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.textBox2);
+            this.panel2.Controls.Add(this.txtEmailSearch);
             this.panel2.Location = new System.Drawing.Point(3, 283);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(762, 45);
@@ -259,6 +281,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "Search";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label2
             // 
@@ -269,15 +292,15 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Search member";
             // 
-            // textBox2
+            // txtEmailSearch
             // 
-            this.textBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox2.Location = new System.Drawing.Point(115, 15);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.PlaceholderText = "email";
-            this.textBox2.Size = new System.Drawing.Size(288, 27);
-            this.textBox2.TabIndex = 0;
+            this.txtEmailSearch.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtEmailSearch.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtEmailSearch.Location = new System.Drawing.Point(115, 15);
+            this.txtEmailSearch.Name = "txtEmailSearch";
+            this.txtEmailSearch.PlaceholderText = "email";
+            this.txtEmailSearch.Size = new System.Drawing.Size(288, 27);
+            this.txtEmailSearch.TabIndex = 0;
             // 
             // dgvMember
             // 
@@ -305,8 +328,8 @@
             // panel5
             // 
             this.panel5.Controls.Add(this.button6);
-            this.panel5.Controls.Add(this.button7);
-            this.panel5.Controls.Add(this.button8);
+            this.panel5.Controls.Add(this.btnOrderUpdate);
+            this.panel5.Controls.Add(this.btnViewOrder);
             this.panel5.Location = new System.Drawing.Point(3, 347);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(756, 48);
@@ -320,27 +343,32 @@
             this.button6.TabIndex = 0;
             this.button6.Text = "Delete";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // button7
+            // btnOrderUpdate
             // 
-            this.button7.Location = new System.Drawing.Point(312, 12);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(87, 33);
-            this.button7.TabIndex = 0;
-            this.button7.Text = "Update";
-            this.button7.UseVisualStyleBackColor = true;
+            this.btnOrderUpdate.Location = new System.Drawing.Point(312, 12);
+            this.btnOrderUpdate.Name = "btnOrderUpdate";
+            this.btnOrderUpdate.Size = new System.Drawing.Size(87, 33);
+            this.btnOrderUpdate.TabIndex = 0;
+            this.btnOrderUpdate.Text = "Update";
+            this.btnOrderUpdate.UseVisualStyleBackColor = true;
+            this.btnOrderUpdate.Click += new System.EventHandler(this.btnOrderUpdate_Click);
             // 
-            // button8
+            // btnViewOrder
             // 
-            this.button8.Location = new System.Drawing.Point(171, 12);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(87, 33);
-            this.button8.TabIndex = 0;
-            this.button8.Text = "Add New";
-            this.button8.UseVisualStyleBackColor = true;
+            this.btnViewOrder.Location = new System.Drawing.Point(171, 12);
+            this.btnViewOrder.Name = "btnViewOrder";
+            this.btnViewOrder.Size = new System.Drawing.Size(87, 33);
+            this.btnViewOrder.TabIndex = 0;
+            this.btnViewOrder.Text = "View";
+            this.btnViewOrder.UseVisualStyleBackColor = true;
+            this.btnViewOrder.Click += new System.EventHandler(this.btnViewOrder_Click);
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.label4);
+            this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.btnReport);
             this.panel4.Controls.Add(this.dtTo);
             this.panel4.Controls.Add(this.dtFrom);
@@ -349,9 +377,27 @@
             this.panel4.Size = new System.Drawing.Size(756, 60);
             this.panel4.TabIndex = 4;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(341, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(19, 15);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "To";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(31, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 15);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "From";
+            // 
             // btnReport
             // 
-            this.btnReport.Location = new System.Drawing.Point(648, 18);
+            this.btnReport.Location = new System.Drawing.Point(629, 20);
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(75, 23);
             this.btnReport.TabIndex = 1;
@@ -380,15 +426,42 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 25;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(762, 272);
+            this.dataGridView2.Size = new System.Drawing.Size(756, 272);
             this.dataGridView2.TabIndex = 1;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.profileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // profileToolStripMenuItem
+            // 
+            this.profileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.logoutToolStripMenuItem});
+            this.profileToolStripMenuItem.Name = "profileToolStripMenuItem";
+            this.profileToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.profileToolStripMenuItem.Text = "Profile";
+            // 
+            // logoutToolStripMenuItem
+            // 
+            this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.logoutToolStripMenuItem.Text = "Logout";
+            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
             // Management
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 472);
             this.Controls.Add(this.dgvOrder);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Management";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " Management";
@@ -407,8 +480,12 @@
             this.tabOrder.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -432,18 +509,24 @@
         private Panel panel2;
         private Button button1;
         private Label label2;
-        private TextBox textBox2;
+        private TextBox txtEmailSearch;
         private DataGridView dgvMember;
         private TabPage tabOrder;
         private Panel panel5;
         private Button button6;
-        private Button button7;
-        private Button button8;
+        private Button btnOrderUpdate;
+        private Button btnViewOrder;
         private Panel panel4;
         private DataGridView dataGridView2;
         private DataGridView dgvProduct;
         private Button btnReport;
         private DateTimePicker dtTo;
         private DateTimePicker dtFrom;
+        private Label label4;
+        private Label label3;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem profileToolStripMenuItem;
+        private ToolStripMenuItem logoutToolStripMenuItem;
+        private ComboBox cboSearchProdOpt;
     }
 }

@@ -111,6 +111,11 @@
             // 
             this.numWeight.DecimalPlaces = 1;
             this.numWeight.Location = new System.Drawing.Point(140, 161);
+            this.numWeight.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.numWeight.Name = "numWeight";
             this.numWeight.Size = new System.Drawing.Size(181, 23);
             this.numWeight.TabIndex = 3;
@@ -128,6 +133,11 @@
             // 
             this.numUnitPrice.DecimalPlaces = 1;
             this.numUnitPrice.Location = new System.Drawing.Point(140, 199);
+            this.numUnitPrice.Maximum = new decimal(new int[] {
+            1215752192,
+            23,
+            0,
+            0});
             this.numUnitPrice.Name = "numUnitPrice";
             this.numUnitPrice.Size = new System.Drawing.Size(181, 23);
             this.numUnitPrice.TabIndex = 3;
@@ -144,6 +154,11 @@
             // numUnitStock
             // 
             this.numUnitStock.Location = new System.Drawing.Point(140, 237);
+            this.numUnitStock.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.numUnitStock.Name = "numUnitStock";
             this.numUnitStock.Size = new System.Drawing.Size(181, 23);
             this.numUnitStock.TabIndex = 3;

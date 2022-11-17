@@ -32,5 +32,13 @@ namespace SalesWinApp
             var orders = orderService.FindAll().Where(order => order.MemberId == user.MemberId);
             dgvOrder.DataSource = orders.ToList();
         }
+
+        private void viewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var memberForm = new FrmMember();
+            memberForm.UpdateOrInsert = true;
+            memberForm.Tag = this.Tag;
+            memberForm.ShowDialog();
+        }
     }
 }

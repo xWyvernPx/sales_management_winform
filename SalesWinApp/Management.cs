@@ -17,6 +17,8 @@ namespace SalesWinApp
 {
     public partial class Management : Form
     {
+        public delegate void Logout();
+        public Logout LogoutHandle { get; set; } = null;
         IProductService productService;
         IMemberService memberService;
         IOrderService orderService;
@@ -35,15 +37,15 @@ namespace SalesWinApp
             }
             else
             {
-                var members = memberService.FindAll(term);
+                var members = memberService.FindAll();
                 dgvMember.DataSource = null;
                 dgvMember.DataSource = members.ToList();
-
             }
         }
+        
         private void LoadProduct(string term = null)
         {
-            productService = new ProductService();
+            //productService = new ProductService();
             if (term is not null)
             {
                 var products = productService.FindAll(term);
@@ -93,7 +95,37 @@ namespace SalesWinApp
 
         private void btnSearchProduct_Click(object sender, EventArgs e)
         {
-            LoadProduct(txtSearchProd.Text.Trim());
+            string term = txtSearchProd.Text.Trim();
+            var option = cboSearchProdOpt.SelectedItem.ToString();
+            switch (option)
+            {
+                case "Name" :
+                    {
+                        LoadProduct(term);
+                        break;
+                    }
+                case "ID":
+                    {
+                        dgvProduct.DataSource = null;
+                        dgvProduct.DataSource = productService.FindAll().Where(prod => prod.ProductId.ToString().Contains(term)).ToList();
+                        break;
+                    }
+                case "Unit Price":
+                    {
+                        dgvProduct.DataSource = null;
+                        dgvProduct.DataSource = productService.FindAll().Where(prod => prod.UnitPrice.ToString().Contains(term)).ToList();
+                        break;
+                      
+                    }
+                case "Unit In Stock":
+                    {
+                        dgvProduct.DataSource = null;
+                        dgvProduct.DataSource = productService.FindAll().Where(prod => prod.UnitsInStock.ToString().Contains(term)).ToList();
+                        break;
+                    }
+                default:
+                    break;
+            }
         }
 
         private void btnUpdateProduct_Click(object sender, EventArgs e)
@@ -184,7 +216,26 @@ namespace SalesWinApp
 
             var orders = orderService.FindAll();
             dataGridView2.DataSource = null;
-            dataGridView2.DataSource = orders.ToList();
+            dataGridView2.DataSource = orders.Select(order =>
+            {
+                double sales = 0;
+
+                order.OrderDetails?.ToList().ForEach(detail =>
+                    sales = sales + detail.UnitPrice * detail.Quantity * (1 - detail.Discount)
+                ); ;
+
+                return new
+                {
+                    OrderId = order.OrderId,
+                    MemberId = order.MemberId,
+                    OrderDate = order.OrderDate,
+                    RequiredDate = order.RequiredDate,
+                    ShippedDate = order.ShippedDate,
+                    Freight = order.Freight,
+                    Items = order.OrderDetails?.ToArray()?.Length??0,
+                    Sales = sales
+                };
+            }).ToList();
         }
         private void tabOrder_Click(object sender, EventArgs e)
         {
@@ -195,9 +246,65 @@ namespace SalesWinApp
         {
             DateTime from = dtFrom.Value;
             DateTime to = dtTo.Value;
-            var orders =  orderService.FindAll().Where(order => order.OrderDate >= from && order.OrderDate <= to);
+            if(from > to)
+            {
+                MessageBox.Show("Invalid Start Date and End Date.");
+            }else
+            {
+                var orders = orderService.FindAll().Where(order => order.OrderDate.Date >= from.Date && order.OrderDate.Date <= to.Date);
+                var reportForm = new FrmReport();
+                reportForm.Tag = orders;
+                reportForm.ShowDialog();
+            }
+           
             // TODO populate Order Detail
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            LoadMember(txtEmailSearch.Text.Trim());
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            DialogResult diaResult = MessageBox.Show("Are you sure to delete this member?", "Delete Warning", MessageBoxButtons.OKCancel);
+            if (diaResult == DialogResult.OK)
+            {
+                var index = dataGridView2.CurrentCell.RowIndex;
+                var selected = dataGridView2.Rows[index].Cells[0].Value.ToString();
+                orderService.Delete(int.Parse(selected));
+                LoadMember();
+            }
+        }
+
+        private void btnViewOrder_Click(object sender, EventArgs e)
+        {
+            var index = dataGridView2.CurrentCell.RowIndex;
+            var selected = dataGridView2.Rows[index].Cells[0].Value.ToString();
+            FrmOrder orderFrom = new FrmOrder();
+            orderFrom.Tag = orderService.GetById(int.Parse(selected));
+            if(orderFrom.ShowDialog() == DialogResult.OK)
+            {
+                LoadOrder();
+            }
+        }
+
+        private void btnOrderUpdate_Click(object sender, EventArgs e)
+        {
+            var index = dataGridView2.CurrentCell.RowIndex;
+            var selected = dataGridView2.Rows[index].Cells[0].Value.ToString();
+            FrmOrder orderFrom = new FrmOrder() {  UpdateOrView = true};
+            orderFrom.Tag = orderService.GetById(int.Parse(selected));
+            if (orderFrom.ShowDialog() == DialogResult.OK)
+            {
+                LoadOrder();
+            }
+        }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LogoutHandle?.Invoke();
         }
     }
 }

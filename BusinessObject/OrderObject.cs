@@ -22,9 +22,9 @@ namespace BusinessObject
 
         public virtual MemberObject Member { get; set; } = null!;
 
-        public virtual ICollection<OrderDetailObject> OrderDetails { get; } = new List<OrderDetailObject>();
+        public virtual IEnumerable<OrderDetailObject> OrderDetails { get; set; }
         public OrderObject(){}
-        public OrderObject(int orderId, int memberId, DateTime orderDate, DateTime? requiredDate, DateTime? shippedDate, decimal? freight, MemberObject member, ICollection<OrderDetailObject> orderDetails)
+        public OrderObject(int orderId, int memberId, DateTime orderDate, DateTime? requiredDate, DateTime? shippedDate, decimal? freight, MemberObject member, IEnumerable<OrderDetailObject> orderDetails)
         {
             OrderId = orderId;
             MemberId = memberId;

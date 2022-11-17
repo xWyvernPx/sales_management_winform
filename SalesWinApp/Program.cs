@@ -1,3 +1,5 @@
+using BusinessObject.Service;
+using Microsoft.Extensions.DependencyInjection;
 namespace SalesWinApp
 {
     internal static class Program
@@ -13,6 +15,10 @@ namespace SalesWinApp
             ApplicationConfiguration.Initialize();
             Application.Run(new FrmLogin());
             //Application.Run(new Management());
+            //Application.Run(new Member());
+            var service = new ServiceCollection();
+            service.AddSingleton<IProductService, ProductService>();
+
         }
     }
 }
